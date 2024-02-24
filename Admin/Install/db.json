@@ -1,0 +1,96 @@
+{
+    "notification": {
+        "name": "notification",
+        "fields": {
+            "notification_id": {
+                "name": "notification_id",
+                "type": "INT",
+                "null": false,
+                "primary": true,
+                "autoincrement": true
+            },
+            "notification_title": {
+                "name": "notification_title",
+                "type": "VARCHAR(255)",
+                "null": false
+            },
+            "notification_desc": {
+                "name": "notification_desc",
+                "type": "TEXT",
+                "null": false
+            },
+            "notification_desc_raw": {
+                "name": "notification_desc_raw",
+                "type": "TEXT",
+                "null": false
+            },
+            "notification_type": {
+                "name": "notification_type",
+                "type": "TINYINT",
+                "null": false
+            },
+            "notification_status": {
+                "name": "notification_status",
+                "type": "TINYINT",
+                "null": false
+            },
+            "notification_redirect": {
+                "name": "notification_redirect",
+                "type": "VARCHAR(255)",
+                "null": false
+            },
+            "notification_created_by": {
+                "name": "notification_created_by",
+                "type": "INT",
+                "null": false,
+                "foreignTable": "account",
+                "foreignKey": "account_id"
+            },
+            "notification_created_at": {
+                "name": "notification_created_at",
+                "type": "DATETIME",
+                "null": false
+            },
+            "notification_module": {
+                "name": "notification_module",
+                "type": "VARCHAR(190)",
+                "null": true,
+                "default": null,
+                "foreignTable": "module",
+                "foreignKey": "module_id"
+            }
+        }
+    },
+    "notification_seen": {
+        "name": "notification_seen",
+        "fields": {
+            "notification_seen_id": {
+                "name": "notification_seen_id",
+                "type": "INT",
+                "null": false,
+                "primary": true,
+                "autoincrement": true
+            },
+            "notification_seen_at": {
+                "name": "notification_seen_at",
+                "type": "DATETIME",
+                "null": true,
+                "default": null
+            },
+            "notification_seen_by": {
+                "name": "notification_seen_by",
+                "type": "INT",
+                "null": false,
+                "foreignTable": "account",
+                "foreignKey": "account_id"
+            },
+            "notification_seen_notification": {
+                "name": "notification_seen_notification",
+                "type": "INT",
+                "null": false,
+                "foreignTable": "notification",
+                "foreignKey": "notification_id"
+            }
+        }
+    }
+}

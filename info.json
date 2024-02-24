@@ -1,0 +1,54 @@
+{
+    "name": {
+        "id": 1008800000,
+        "internal": "Notification",
+        "external": "Notification"
+    },
+    "category": "Tools",
+    "version": "1.0.0",
+    "requirements": {
+        "phpOMS": "1.0.0",
+        "phpOMS-db": "1.0.0"
+    },
+    "creator": {
+        "name": "Jingga",
+        "website": "jingga.app"
+    },
+    "description": "Notification module.",
+    "directory": "Notification",
+    "dependencies": {
+        "Admin": "1.0.0"
+    },
+    "providing": {
+        "Dashboard": "*"
+    },
+    "load": [
+        {
+            "pid": [
+                "/notification"
+            ],
+            "type": 4,
+            "for": 0,
+            "from": "Notification",
+            "file": "Notification"
+        },
+        {
+            "pid": [
+                "/"
+            ],
+            "type": 4,
+            "for": "Navigation",
+            "from": "Notification",
+            "file": "Notification"
+        },
+        {
+            "pid": [
+                "/"
+            ],
+            "type": 5,
+            "from": "Notification",
+            "for": "Navigation",
+            "file": "Navigation"
+        }
+    ]
+}

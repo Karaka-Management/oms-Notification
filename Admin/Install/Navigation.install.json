@@ -1,0 +1,33 @@
+[
+    {
+        "id": 1008801001,
+        "pid": "/",
+        "type": 1,
+        "subtype": 1,
+        "name": "Notification",
+        "uri": "{/base}/notification/dashboard?{?}",
+        "target": "self",
+        "icon": "notifications",
+        "order": 15,
+        "from": "Notification",
+        "permission": { "permission": 2, "category": null, "element": null },
+        "parent": 0,
+        "children": [
+            {
+                "id": 1008802001,
+                "pid": "/notification",
+                "type": 3,
+                "subtype": 1,
+                "name": "Dashboard",
+                "uri": "{/base}/notification/dashboard?{?}",
+                "target": "self",
+                "icon": null,
+                "order": 1,
+                "from": "Notification",
+                "permission": { "permission": 2, "category": null, "element": null },
+                "parent": 1008801001,
+                "children": []
+            }
+        ]
+    }
+]
