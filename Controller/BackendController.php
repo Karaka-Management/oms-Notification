@@ -15,7 +15,9 @@ declare(strict_types=1);
 namespace Modules\Notification\Controller;
 
 use Modules\Dashboard\Models\DashboardElementInterface;
+use Modules\Notification\Models\NotificationMapper;
 use phpOMS\Contract\RenderableInterface;
+use phpOMS\DataStorage\Database\Query\OrderType;
 use phpOMS\Message\RequestAbstract;
 use phpOMS\Message\ResponseAbstract;
 use phpOMS\Views\View;
@@ -49,6 +51,13 @@ final class BackendController extends Controller implements DashboardElementInte
         $view = new View($this->app->l11nManager, $request, $response);
         $view->setTemplate('/Modules/Notification/Theme/Backend/notification-dashboard');
 
+        $view->data['notifications'] = NotificationMapper::getAll()
+            ->where('createdFor', $request->header->account)
+            ->where('seenAt', null)
+            ->where('createdAt', new \DateTime('now'), '<') // Don't show pre-created notifications
+            ->sort('createdAt', OrderType::ASC)
+            ->execute();
+
         return $view;
     }
 
@@ -61,10 +70,32 @@ final class BackendController extends Controller implements DashboardElementInte
         $view = new View($this->app->l11nManager, $request, $response);
         $view->setTemplate('/Modules/Notification/Theme/Backend/dashboard-notification');
 
-        $notifications = [];
-
-        $view->data['notifications'] = $notifications;
+        $view->data['notifications'] = NotificationMapper::getAll()
+            ->where('createdFor', $request->header->account)
+            ->where('seenAt', null)
+            ->where('createdAt', new \DateTime('now'), '<') // Don't show pre-created notifications
+            ->sort('createdAt', OrderType::ASC)
+            ->limit(5)
+            ->execute();
 
         return $view;
+    }
+
+    /**
+     * Count unread messages
+     *
+     * @param int $account Account id
+     *
+     * @return int Returns the amount of unread tasks
+     *
+     * @since 1.0.0
+     */
+    public function openNav(int $account) : int
+    {
+        return NotificationMapper::count()
+            ->where('createdFor', $account)
+            ->where('seenAt', null)
+            ->where('createdAt', new \DateTime('now'), '<') // Don't show pre-created notifications
+            ->execute();
     }
 }

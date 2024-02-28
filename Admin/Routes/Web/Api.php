@@ -12,19 +12,19 @@
  */
 declare(strict_types=1);
 
-use Modules\Notification\Controller\BackendController;
+use Modules\Notification\Controller\ApiController;
 use Modules\Notification\Models\PermissionCategory;
 use phpOMS\Account\PermissionType;
 use phpOMS\Router\RouteVerb;
 
 return [
-    '^.*/notification/dashboard(\?.*$|$)' => [
+    '^.*/notification/seen(\?.*|$)' => [
         [
-            'dest'       => '\Modules\Notification\Controller\BackendController:viewNotificationDashboard',
-            'verb'       => RouteVerb::GET,
+            'dest'       => '\Modules\Notification\Controller\ApiController:apiNotificationSeenCreate',
+            'verb'       => RouteVerb::SET,
             'permission' => [
-                'module' => BackendController::NAME,
-                'type'   => PermissionType::READ,
+                'module' => ApiController::NAME,
+                'type'   => PermissionType::CREATE,
                 'state'  => PermissionCategory::NOTIFICATION,
             ],
         ],
