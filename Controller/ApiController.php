@@ -16,8 +16,10 @@ namespace Modules\Notification\Controller;
 
 use Modules\Notification\Models\NotificationMapper;
 use phpOMS\DataStorage\Database\Query\OrderType;
+use phpOMS\Message\NotificationLevel;
 use phpOMS\Message\RequestAbstract;
 use phpOMS\Message\ResponseAbstract;
+use phpOMS\System\MimeType;
 
 /**
  * Api controller for the tasks module.
@@ -60,5 +62,38 @@ final class ApiController extends Controller
         }
 
         $this->createStandardUpdateResponse($request, $response, []);
+    }
+
+    /**
+     * Api method to create a task
+     *
+     * @param RequestAbstract  $request  Request
+     * @param ResponseAbstract $response Response
+     * @param array            $data     Generic data
+     *
+     * @return void
+     *
+     * @api
+     *
+     * @since 1.0.0
+     */
+    public function apiNotificationsGet(RequestAbstract $request, ResponseAbstract $response, array $data = []) : void
+    {
+        $now = new \DateTimeImmutable('now');
+        $notifications = NotificationMapper::getAll()
+            ->where('createdFor', $request->header->account)
+            ->where('seenAt', null)
+            ->where('createdAt', $now, '<') // Don't show pre-created notifications
+            ->where('createdAt', $request->getDataDateTime('start') ?? $now->modify('-1 hour'), '>')
+            ->sort('createdAt', OrderType::ASC)
+            ->execute();
+
+        $response->header->set('Content-Type', MimeType::M_JSON . '; charset=utf-8', true);
+        $response->data[$request->uri->__toString()] = [
+            'status'   => NotificationLevel::OK,
+            'title'    => 'New Notification',
+            'message'  => 'You have new notifications',
+            'response' => $notifications,
+        ];
     }
 }

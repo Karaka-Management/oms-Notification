@@ -29,4 +29,15 @@ return [
             ],
         ],
     ],
+    '^.*/notification(\?.*|$)' => [
+        [
+            'dest'       => '\Modules\Notification\Controller\ApiController:apiNotificationsGet',
+            'verb'       => RouteVerb::GET,
+            'permission' => [
+                'module' => ApiController::NAME,
+                'type'   => PermissionType::READ,
+                'state'  => PermissionCategory::NOTIFICATION,
+            ],
+        ],
+    ],
 ];
