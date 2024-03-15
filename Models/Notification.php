@@ -131,9 +131,9 @@ class Notification implements \JsonSerializable
      */
     public function __construct()
     {
-        $this->createdBy = new NullAccount();
+        $this->createdBy  = new NullAccount();
         $this->createdFor = new NullAccount();
-        $this->createdAt = new \DateTimeImmutable('now');
+        $this->createdAt  = new \DateTimeImmutable('now');
     }
 
     /**

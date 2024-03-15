@@ -47,6 +47,8 @@ final class ApiController extends Controller
     public function apiNotificationSeenCreate(RequestAbstract $request, ResponseAbstract $response, array $data = []) : void
     {
         $now = new \DateTimeImmutable('now');
+
+        /** @var \Modules\Notification\Models\Notification[] $notifications */
         $notifications = NotificationMapper::getAll()
             ->where('createdFor', $request->header->account)
             ->where('seenAt', null)
@@ -55,7 +57,7 @@ final class ApiController extends Controller
             ->execute();
 
         foreach ($notifications as $notification) {
-            $new = clone $notification;
+            $new         = clone $notification;
             $new->seenAt = $now;
 
             $this->updateModel($request->header->account, $notification, $new, NotificationMapper::class, 'notification', $request->getOrigin());
@@ -79,7 +81,7 @@ final class ApiController extends Controller
      */
     public function apiNotificationsGet(RequestAbstract $request, ResponseAbstract $response, array $data = []) : void
     {
-        $now = new \DateTimeImmutable('now');
+        $now           = new \DateTimeImmutable('now');
         $notifications = NotificationMapper::getAll()
             ->where('createdFor', $request->header->account)
             ->where('seenAt', null)

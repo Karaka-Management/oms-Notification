@@ -43,14 +43,14 @@ final class NotificationMapper extends DataMapperFactory
         'notification_desc_raw'   => ['name' => 'notification_desc_raw',   'type' => 'string',   'internal' => 'descriptionRaw'],
         'notification_type'       => ['name' => 'notification_type',       'type' => 'int',      'internal' => 'type'],
         'notification_status'     => ['name' => 'notification_status',     'type' => 'int',      'internal' => 'status'],
-        'notification_module'       => ['name' => 'notification_module',       'type' => 'string',   'internal' => 'module'],
-        'notification_category'     => ['name' => 'notification_category',     'type' => 'int',      'internal' => 'category'],
-        'notification_element'     => ['name' => 'notification_element',     'type' => 'int',      'internal' => 'element'],
+        'notification_module'     => ['name' => 'notification_module',       'type' => 'string',   'internal' => 'module'],
+        'notification_category'   => ['name' => 'notification_category',     'type' => 'int',      'internal' => 'category'],
+        'notification_element'    => ['name' => 'notification_element',     'type' => 'int',      'internal' => 'element'],
         'notification_redirect'   => ['name' => 'notification_redirect',      'type' => 'string',   'internal' => 'redirect'],
         'notification_created_by' => ['name' => 'notification_created_by', 'type' => 'int',      'internal' => 'createdBy', 'readonly' => true],
         'notification_for'        => ['name' => 'notification_for', 'type' => 'int',      'internal' => 'createdFor'],
         'notification_created_at' => ['name' => 'notification_created_at', 'type' => 'DateTimeImmutable', 'internal' => 'createdAt', 'readonly' => true],
-        'notification_seen_at' => ['name' => 'notification_seen_at', 'type' => 'DateTimeImmutable', 'internal' => 'seenAt'],
+        'notification_seen_at'    => ['name' => 'notification_seen_at', 'type' => 'DateTimeImmutable', 'internal' => 'seenAt'],
     ];
 
     /**
