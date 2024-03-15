@@ -54,7 +54,7 @@ final class BackendController extends Controller implements DashboardElementInte
         $view->data['notifications'] = NotificationMapper::getAll()
             ->where('createdFor', $request->header->account)
             ->where('seenAt', null)
-            ->where('createdAt', new \DateTime('now'), '<') // Don't show pre-created notifications
+            ->where('createdAt', new \DateTime('now'), '<') // Don't show future notifications
             ->sort('createdAt', OrderType::ASC)
             ->execute();
 
@@ -73,7 +73,7 @@ final class BackendController extends Controller implements DashboardElementInte
         $view->data['notifications'] = NotificationMapper::getAll()
             ->where('createdFor', $request->header->account)
             ->where('seenAt', null)
-            ->where('createdAt', new \DateTime('now'), '<') // Don't show pre-created notifications
+            ->where('createdAt', new \DateTime('now'), '<') // Don't show future notifications
             ->sort('createdAt', OrderType::ASC)
             ->limit(5)
             ->execute();
@@ -95,7 +95,7 @@ final class BackendController extends Controller implements DashboardElementInte
         return NotificationMapper::count()
             ->where('createdFor', $account)
             ->where('seenAt', null)
-            ->where('createdAt', new \DateTime('now'), '<') // Don't show pre-created notifications
-            ->execute();
+            ->where('createdAt', new \DateTime('now'), '<') // Don't show future notifications
+            ->executeCount();
     }
 }
