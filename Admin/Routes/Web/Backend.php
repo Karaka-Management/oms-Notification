@@ -18,7 +18,7 @@ use phpOMS\Account\PermissionType;
 use phpOMS\Router\RouteVerb;
 
 return [
-    '^.*/notification/dashboard(\?.*$|$)' => [
+    '^/notification/dashboard(\?.*$|$)' => [
         [
             'dest'       => '\Modules\Notification\Controller\BackendController:viewNotificationDashboard',
             'verb'       => RouteVerb::GET,
