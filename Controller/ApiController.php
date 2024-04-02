@@ -54,7 +54,7 @@ final class ApiController extends Controller
             ->where('seenAt', null)
             ->where('createdAt', $now, '<') // Don't show pre-created notifications
             ->sort('createdAt', OrderType::ASC)
-            ->execute();
+            ->executeGetArray();
 
         foreach ($notifications as $notification) {
             $new         = clone $notification;
@@ -88,7 +88,7 @@ final class ApiController extends Controller
             ->where('createdAt', $now, '<') // Don't show pre-created notifications
             ->where('createdAt', $request->getDataDateTime('start') ?? $now->modify('-1 hour'), '>')
             ->sort('createdAt', OrderType::ASC)
-            ->execute();
+            ->executeGetArray();
 
         $response->header->set('Content-Type', MimeType::M_JSON . '; charset=utf-8', true);
         $response->data[$request->uri->__toString()] = [

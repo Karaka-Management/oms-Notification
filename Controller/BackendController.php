@@ -56,7 +56,7 @@ final class BackendController extends Controller implements DashboardElementInte
             ->where('seenAt', null)
             ->where('createdAt', new \DateTime('now'), '<') // Don't show future notifications
             ->sort('createdAt', OrderType::ASC)
-            ->execute();
+            ->executeGetArray();
 
         return $view;
     }
@@ -76,7 +76,7 @@ final class BackendController extends Controller implements DashboardElementInte
             ->where('createdAt', new \DateTime('now'), '<') // Don't show future notifications
             ->sort('createdAt', OrderType::ASC)
             ->limit(5)
-            ->execute();
+            ->executeGetArray();
 
         return $view;
     }
