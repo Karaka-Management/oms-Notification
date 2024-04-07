@@ -18,7 +18,7 @@ use Modules\Admin\Models\AccountMapper;
 use phpOMS\DataStorage\Database\Mapper\DataMapperFactory;
 
 /**
- * Mapper class.
+ * Notification mapper class.
  *
  * @package Modules\Notification\Models
  * @license OMS License 2.0

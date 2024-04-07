@@ -23,6 +23,7 @@ return [
             'dest'       => '\Modules\Notification\Controller\ApiController:apiNotificationSeenCreate',
             'verb'       => RouteVerb::SET,
             'csrf'       => true,
+            'active' => true,
             'permission' => [
                 'module' => ApiController::NAME,
                 'type'   => PermissionType::CREATE,
@@ -35,6 +36,7 @@ return [
             'dest'       => '\Modules\Notification\Controller\ApiController:apiNotificationsGet',
             'verb'       => RouteVerb::GET,
             'csrf'       => true,
+            'active' => true,
             'permission' => [
                 'module' => ApiController::NAME,
                 'type'   => PermissionType::READ,
