@@ -22,7 +22,7 @@ return [
         [
             'dest'       => '\Modules\Notification\Controller\BackendController:viewNotificationDashboard',
             'verb'       => RouteVerb::GET,
-            'active' => true,
+            'active'     => true,
             'permission' => [
                 'module' => BackendController::NAME,
                 'type'   => PermissionType::READ,
