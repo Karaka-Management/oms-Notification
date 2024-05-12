@@ -20,15 +20,15 @@ $notifications = $this->data['notifications'] ?? [];
 ?>
 <div class="row">
     <div class="col-xs-12">
-        <div class="portlet">
-        <div class="portlet-head">
-            <?= $this->getHtml('Notifications', 'Notification'); ?>
-            <span class="end-xs">
-                <form id="iNotificationRead" action="<?= \phpOMS\Uri\UriFactory::build('{/api}notification/seen?{?}&csrf={$CSRF}'); ?>" method="POST">
-                    <input type="submit" class="end-xs save" value="<?= $this->getHtml('MarkSeen', 'Notification'); ?>">
-                </form>
-            </span>
-        </div>
+        <section class="portlet">
+            <div class="portlet-head">
+                <?= $this->getHtml('Notifications', 'Notification'); ?>
+                <span class="end-xs">
+                    <form id="iNotificationRead" action="<?= \phpOMS\Uri\UriFactory::build('{/api}notification/seen?{?}&csrf={$CSRF}'); ?>" method="POST">
+                        <input type="submit" class="end-xs save" value="<?= $this->getHtml('MarkSeen', 'Notification'); ?>">
+                    </form>
+                </span>
+            </div>
             <div class="slider">
             <table id="notificationList" class="default sticky">
             <thead>
@@ -50,8 +50,8 @@ $notifications = $this->data['notifications'] ?? [];
             <?php if ($c === 0) : ?>
             <tr><td colspan="3" class="empty"><?= $this->getHtml('Empty', '0', '0'); ?>
             <?php endif; ?>
-        </table>
+            </table>
             </div>
-        </div>
+        </section>
     </div>
 </div>

@@ -18,7 +18,7 @@ $notifications = $this->data['notifications'] ?? [];
 ?>
 
 <div id="notification-dashboard" class="col-xs-12 col-md-6" draggable="true">
-    <div class="portlet">
+    <section class="portlet">
         <div class="portlet-head"><?= $this->getHtml('Notifications', 'Notification'); ?></div>
         <div class="slider">
         <table class="default sticky">
@@ -51,5 +51,5 @@ $notifications = $this->data['notifications'] ?? [];
                 </form>
             </span>
         </div>
-    </div>
+    </section>
 </div>
