@@ -24,7 +24,9 @@ $notifications = $this->data['notifications'] ?? [];
             <div class="portlet-head">
                 <?= $this->getHtml('Notifications', 'Notification'); ?>
                 <span class="end-xs">
-                    <form id="iNotificationRead" action="<?= \phpOMS\Uri\UriFactory::build('{/api}notification/seen?{?}&csrf={$CSRF}'); ?>" method="POST">
+                    <form id="iNotificationRead"
+                        action="<?= UriFactory::build('{/api}notification/seen?{?}&csrf={$CSRF}'); ?>" method="POST"
+                        data-redirect="<?= UriFactory::build('{%}'); ?>">
                         <input type="submit" class="end-xs save" value="<?= $this->getHtml('MarkSeen', 'Notification'); ?>">
                     </form>
                 </span>
