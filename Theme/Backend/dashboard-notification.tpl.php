@@ -16,7 +16,6 @@ use phpOMS\Uri\UriFactory;
 
 $notifications = $this->data['notifications'] ?? [];
 ?>
-
 <div id="notification-dashboard" class="col-xs-12 col-md-6" draggable="true">
     <section class="portlet">
         <div class="portlet-head"><?= $this->getHtml('Notifications', 'Notification'); ?></div>
